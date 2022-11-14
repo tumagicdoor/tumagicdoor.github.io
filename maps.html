@@ -20,14 +20,16 @@
       }
     }
   </style>
-
   
   <!-- Custom styles for this template -->
-  <link href="sidebars.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
 
 </head>
 <script>
 
+if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
 // JavaScript program to print all
 // paths from a source to
 // destination.
@@ -187,16 +189,37 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
 
     <hr>
     <div class="dropdown">
-      <a href="./maps.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <a id="chatlink" href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#chat-quote-fill"/></svg>
         <span class="fs-4">Chat with us</span>
       </a>
-
     </div>
 
+    <div class="card" id="msgWindow">
+      <div class="card-header"><span class="card-title" style="color: black;">Chat with TU Magic Door Users</span></div>
+      <div class="card-body" id="msgs">
+        <div class="msg to" style="color:black;">Hello! How can I assist you today?</div>
+      </div>
+      <div class="card-footer">
+        <div class="input-group" data-sender="me">
+          <input class="form-control" type="text" placeholder="Name" id="userName"/>
+        </div>
+        <div class="input-group" data-sender="me">
+          <input class="form-control" type="text" placeholder="Type message and hit [Enter] to send." id="newMsg"/>
+          <input type="hidden" id="sessionId" name="sessionId" value="">
+        </div>
+        <div class="input-group" data-sender="me">
+          <button class="btn btn-outline-secondary" type="button" id="sendBtn">Send</button>
+          <div class="input-group-append">
+            <button class="btn btn-outline-danger" type="button" id="closeBtn">Close</button>
+          </div>
+        </div>
 
+
+      </div>
     </div>
-  
+
+  </div>
     <div class="b-example-divider"></div>
     <div class="d-flex flex-column flex-grow-1 p-3 bg-light">
       <div class="col-md-10 px-0">
@@ -205,20 +228,172 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
         <!-- <img src="./tumagicdoor-map.png" class="img-fluid"> -->
       </div>
     </div>
+
   </main>      
-  <script src="sidebars.js"></script>
   <script src="jquery.min.js" > </script>
+
+  <script type="module">
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const config = {
+    apiKey: "AIzaSyB5kahdypenizn8eRSDmVEMacgnUWMbQKs",
+    authDomain: "simplechat-210d5.firebaseapp.com",
+    databaseURL: "https://simplechat-210d5-default-rtdb.firebaseio.com",
+    projectId: "simplechat-210d5",
+    storageBucket: "simplechat-210d5.appspot.com",
+    messagingSenderId: "1086056126841",
+    appId: "1:1086056126841:web:9eb267fa13c9eaa8b5b7a8"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(config);
+    import { getDatabase, ref, set, push, onChildAdded, onValue } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js"
+
+    const db = getDatabase(app) // <-- Pass in the initialized app
+    //Creating the reference (The path in db you are trying to read/write/update)
+    const myDataRef = ref(db, "/chat")
+
+
+    const chatRef = ref(db, 'chat');
+    onValue(chatRef, (snapshot) => {
+      const data = snapshot.val();
+
+      if ($("#sessionId").val() != data.sessid) {
+        let theEnvelope = {
+            msg: data.msg,
+            sender: data.name };
+
+          _send(theEnvelope);
+      }
+
+      // displayChatMessage(data.name, data.msg);
+    });      
+
+
+
+    function _send(data) {
+      // Send data to a new .msg
+      let $msg = $('<div class="msg"></div>'),
+      { sender, typing } = data;
+      if (sender !== "me") {
+        $msg.addClass("to");
+        $msg.css("color","black");
+        $msg.text(data.sender + ' : ' + data.msg);
+      } else {
+        $msg.addClass("from");
+        $msg.css("color","green");
+        $msg.text(data.msg);
+      }
+      if (typing) $msg.addClass("typing");
+      $msg.appendTo($("#msgs"));
+      if (typing) return $msg; // ref to new DOM .msg
+
+    }
+
+
+    // Define event handlers: Hitting Enter or Send should send the form.
+    $("#newMsg").on("keypress", function (e) {
+      // @TODO: Allow [mod] + [enter] to expand field & insert a <BR>
+      if (e.which === 13) {
+        // Stop the prop
+        e.stopPropagation();e.preventDefault();
+        // Wrap the msg and send!
+
+        set(ref(db, 'chat'), {name: $("#userName").val(), msg: $("#newMsg").val(), sessid: $("#sessionId").val()});
+
+        let theEnvelope = {
+          msg: $("#newMsg").val(),
+          sender: "me" };
+
+        $("#newMsg").val("");
+
+        return _send(theEnvelope);
+      } else {
+        // goggles
+      }
+    });
+    $("#sendBtn").on("click", function (e) {
+      // Stop the prop
+      e.stopPropagation();e.preventDefault();
+      // Wrap the msg and send!
+
+      set(ref(db, 'chat'), {name: $("#userName").val(), msg: $("#newMsg").val(), sessid: $("#sessionId").val()});
+
+      let theEnvelope = {
+        msg: $("#newMsg").val(),
+        sender: "me" };
+
+      $("#newMsg").val("");
+
+      return _send(theEnvelope);
+    });        
+
+
+  </script>
+
+
   <script type="text/javascript">
   //<![CDATA[
 
   // $("#startLocation").selectpicker();
-
-
-
-
-
     jQuery(document).ready(function($) {
 
+
+        var rand = function() {
+          return Math.random().toString(36).substr(2); // remove `0.`
+        };
+
+
+        function drawPath() {
+
+          var data = '';
+          let s = $("#startLocation").val();
+          let d = $("#endLocation").val();
+
+
+          ctx.clearRect(0, 0, mymap.width, mymap.height);
+          // img.src = './tumagicdoor-map.png';
+          ctx.drawImage(img, 0, 0, mymap.width, mymap.height);
+
+          for(var i = 0; i < mypath.length; i++) {
+              if ( s == mypath[i].start && d == mypath[i].end || ( s == mypath[i].end && d == mypath[i].start) ) {
+                  data = mypath[i].path;
+                  break;
+                }
+            } 
+
+          $("#pathtodest").empty();
+
+          const mylocation = data.split(",");
+
+          if (mylocation != '') {
+            k = parseInt(mylocation[0]);
+            ctx.beginPath();
+            ctx.moveTo(location[k].x, location[k].y);
+
+            for(i=0; i < mylocation.length; i++) {
+              k = parseInt(mylocation[i]);
+              $("#pathtodest").append(location[k].name + "\n");
+              if (i > 0) {
+                ctx.lineTo(location[k].x, location[k].y);
+              }
+
+            }
+
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "red";
+
+            ctx.stroke();
+          } else {
+            $("#pathtodest").append("Direction not assigned.\n");
+          }
+
+        }
 
         function locationLoad() {
 
@@ -258,6 +433,12 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
 
         }  
 
+        //sidebar
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+          new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
 
         var mypath;
         $.getJSON("./data.json", function(data) { mypath = data; });
@@ -282,54 +463,19 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
         });
 
 
-        function drawPath() {
+        $("#chatlink").click(function(){ 
+          document.getElementById("msgWindow").style.display = "block";
+          return false; 
+        });
+        $("#closeBtn").click(function(){ 
+          document.getElementById("msgWindow").style.display = "none"; 
+          return false; 
+        });
 
-          var data = '';
-          let s = $("#startLocation").val();
-          let d = $("#endLocation").val();
-
-
-          ctx.clearRect(0, 0, mymap.width, mymap.height);
-          // img.src = './tumagicdoor-map.png';
-          ctx.drawImage(img, 0, 0, mymap.width, mymap.height);
-
-          for(var i = 0; i < mypath.length; i++) {
-              if ( s == mypath[i].start && d == mypath[i].end || ( s == mypath[i].end && d == mypath[i].start) ) {
-                  data = mypath[i].path;
-                  break;
-                }
-            } 
-          
-          $("#pathtodest").empty();
-
-          const mylocation = data.split(",");
-
-          if (mylocation != '') {
-            k = parseInt(mylocation[0]);
-            ctx.beginPath();
-            ctx.moveTo(location[k].x, location[k].y);
-
-            for(i=0; i < mylocation.length; i++) {
-              k = parseInt(mylocation[i]);
-              $("#pathtodest").append(location[k].name + "\n");
-              if (i > 0) {
-                ctx.lineTo(location[k].x, location[k].y);
-              }
-
-            }
-
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = "red";
-
-            ctx.stroke();
-          } else {
-            $("#pathtodest").append("Direction not assigned.\n");
-          }
-
-        }
-
+        $("#sessionId").val(rand() + rand());
 
         locationLoad();
+
 
     });
 
