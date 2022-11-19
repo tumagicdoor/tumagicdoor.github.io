@@ -7,13 +7,40 @@
   <script src="bootstrap.bundle.min.js" > </script>
   <style>
 
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        display: block; /* remove extra space below image */
+    }
 
-    body {
+    html, body
+    {
+        height: 100%;
+        margin:0;
+        padding:0;
+    }
+
+    div {
+        position:relative;
+        height: 100%;
+        width:100%;
+    }
+
+    #main-img {
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+    }
+
+    /* body {
       background-position: center center;
       background-attachment: fixed;
       background-repeat: no-repeat; background-size: auto;
       background-image: url(home_desktop.jpg);
-    }
+    } */
 
 
   </style>
@@ -23,9 +50,9 @@
 
   <div class="container">
     <div class="row">
-      <!-- <a href="maps.html">
-      <img id="main-img" src="" alt="" />
-      </a> -->
+      <a href="maps.html">
+      <img id="main-img" src="home_desktop.jpg" alt="" />
+      </a>
     </div>
   </div>
 
@@ -33,30 +60,5 @@
     <img  id="main-img" src="#" />
    </div>  
  -->
-   <script src="jquery.min.js" > </script>
-   <script>
-
-      var width = $(window).width(); 
-      var height = $(window).height(); 
-
-      $("#width").val(width);
-      $("#height").val(height);
-
-      // if ((width >= 1280) && (height>=1024)) {
-      //   $("#main-img").attr("src","home_desktop.jpg");      
-      // //do something
-      // }
-      // else if ((width >= 1024  ) && (height>=768)){
-      //   $("#main-img").attr("src","home_desktop.jpeg");      
-      // //do something else
-      // } else if ((width >= 800) && (height>=600)){
-      //   $("#main-img").attr("src","home_desktop.jpeg");      
-      // //do something else
-      // }else{
-      //   $("#main-img").attr("src","home_mobile.jpeg");      
-      // //do something else
-      // }    
-
-  </script>
 </body>
 </html>
