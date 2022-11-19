@@ -7,7 +7,10 @@
   <script src="bootstrap.bundle.min.js" > </script>
   <style>
 
-
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
    
     @media DISABLED {
     @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */}
@@ -25,7 +28,7 @@
   <div class="container">
     <div class="row">
       <a href="maps.html">
-      <img id="main-img" src="home_desktop.png" alt="" />
+      <img id="main-img" src="" alt="" />
       </a>
     </div>
   </div>
@@ -42,17 +45,17 @@
 
 
       if ((width >= 1280) && (height>=1024)) {
-        $("#main-img").attr("src","home_desktop.png");      
+        $("#main-img").attr("src","home_desktop.jpeg");      
       //do something
       }
       else if ((width >= 1024  ) && (height>=768)){
-        $("#main-img").attr("src","home_desktop.png");      
+        $("#main-img").attr("src","home_desktop.jpeg");      
       //do something else
       } else if ((width >= 800) && (height>=600)){
-        $("#main-img").attr("src","home_desktop.png");      
+        $("#main-img").attr("src","home_desktop.jpeg");      
       //do something else
       }else{
-        $("#main-img").attr("src","home_mobile.png");      
+        $("#main-img").attr("src","home_mobile.jpeg");      
       //do something else
       }    
 
