@@ -15,11 +15,6 @@
       /* background-image: url(images/background-desktop.jpg); */
     }
 
-    img {
-        max-width: auto;
-        max-height: auto;
-    }
-   
     @media DISABLED {
     @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */}
     @media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
@@ -262,13 +257,15 @@
 </head>
 <body>
 
-  <!-- <div class="container">
+  <div class="container">
     <div class="row">
-      <a href="maps.html">
+      <input type="text" id="width" name="user_name">
+      <input type="text" id="height" name="user_name">
+      <!-- <a href="maps.html">
       <img id="main-img" src="" alt="" />
-      </a>
+      </a> -->
     </div>
-  </div> -->
+  </div>
 
    <!-- <div class="container">
     <img  id="main-img" src="#" />
@@ -280,21 +277,23 @@
       var width = $(window).width(); 
       var height = $(window).height(); 
 
+      $("#width").val(width);
+      $("#height").val(height);
 
-      if ((width >= 1280) && (height>=1024)) {
-        $("#main-img").attr("src","home_desktop.jpg");      
-      //do something
-      }
-      else if ((width >= 1024  ) && (height>=768)){
-        $("#main-img").attr("src","home_desktop.jpeg");      
-      //do something else
-      } else if ((width >= 800) && (height>=600)){
-        $("#main-img").attr("src","home_desktop.jpeg");      
-      //do something else
-      }else{
-        $("#main-img").attr("src","home_mobile.jpeg");      
-      //do something else
-      }    
+      // if ((width >= 1280) && (height>=1024)) {
+      //   $("#main-img").attr("src","home_desktop.jpg");      
+      // //do something
+      // }
+      // else if ((width >= 1024  ) && (height>=768)){
+      //   $("#main-img").attr("src","home_desktop.jpeg");      
+      // //do something else
+      // } else if ((width >= 800) && (height>=600)){
+      //   $("#main-img").attr("src","home_desktop.jpeg");      
+      // //do something else
+      // }else{
+      //   $("#main-img").attr("src","home_mobile.jpeg");      
+      // //do something else
+      // }    
 
   </script>
 </body>
