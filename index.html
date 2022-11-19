@@ -7,6 +7,13 @@
   <script src="bootstrap.bundle.min.js" > </script>
   <style>
 
+    body {
+      background-position: center center;
+      background-attachment: fixed;
+      background-repeat: no-repeat; background-size: auto;
+      /* background-image: url(images/background-desktop.jpg); */
+    }
+
     img {
         max-width: auto;
         max-height: auto;
@@ -19,19 +26,38 @@
     @media (min-width:1281px) { /* hi-res laptops and desktops */ }
     }
 
+    /* for mobile */
+    @media (max-width: 480px) {
+      body {
+          background-image: url(home_mobile.jpg);
+      }
+    }
+    /* for tablets */
+    @media (min-width: 481px) and (max-width: 1024px) {
+      body {
+          background-image: url(home_desktop.jpg);
+      }
+    }    
+    /* for desktop */
+    @media (min-width: 1025px) {
+      body {
+        background-image: url(home_desktop.jpg);
+      }
+    } 
+
 
   </style>
   
 </head>
 <body>
 
-  <div class="container">
+  <!-- <div class="container">
     <div class="row">
       <a href="maps.html">
       <img id="main-img" src="" alt="" />
       </a>
     </div>
-  </div>
+  </div> -->
 
    <!-- <div class="container">
     <img  id="main-img" src="#" />
@@ -59,10 +85,10 @@
       //do something else
       }    
 
-    // function clickBody() {
-    //     window.location.href = './maps.html'
-    // }
-    // document.body.addEventListener("click", clickBody)    
+    function clickBody() {
+        window.location.href = './maps.html'
+    }
+    document.body.addEventListener("click", clickBody)    
   </script>
 </body>
 </html>
