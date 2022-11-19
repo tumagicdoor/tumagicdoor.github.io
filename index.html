@@ -7,6 +7,7 @@
   <script src="bootstrap.bundle.min.js" > </script>
   <style>
 
+
     body {
       background-position: center center;
       background-attachment: fixed;
@@ -26,18 +27,228 @@
     @media (min-width:1281px) { /* hi-res laptops and desktops */ }
     }
 
-    /* for mobile */
-    @media (max-width: 480px) {
-      body {
+
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    body {
           background-image: url(home_mobile.jpg);
       }
-    }
-    /* for tablets */
-    @media (min-width: 481px) and (max-width: 1024px) {
-      body {
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    body {
+          background-image: url(home_mobile.jpg);
+      }
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    body {
           background-image: url(home_desktop.jpg);
       }
-    }    
+
+}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    body {
+          background-image: url(home_mobile.jpg);
+      }
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    body {
+          background-image: url(home_desktop.jpg);
+      }
+
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+    body {
+          background-image: url(home_mobile.jpg);
+      }
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+    body {
+          background-image: url(home_desktop.jpg);
+      }
+
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+    body {
+          background-image: url(home_mobile.jpg);
+      }
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+    body {
+          background-image: url(home_desktop.jpg);
+      }
+
+}
+
+/* ----------- iPhone X ----------- */
+
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+    body {
+          background-image: url(home_mobile.jpg);
+      }
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+    body {
+          background-image: url(home_desktop.jpg);
+      }
+
+}
+
+
+/* Portrait */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 2) 
+  and (orientation: portrait) {
+    body {
+        background-image: url(home_mobile.jpg);
+      }
+
+}
+
+/* Landscape */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 2) 
+  and (orientation: landscape) {
+    body {
+        background-image: url(home_desktop.jpg);
+      }
+
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+
+/* Portrait */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: portrait) {
+    body {
+        background-image: url(home_mobile.jpg);
+      }
+
+}
+
+/* Landscape */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: landscape) {
+    body {
+        background-image: url(home_desktop.jpg);
+      }
+
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 4) 
+  and (orientation: portrait) {
+    body {
+        background-image: url(home_mobile.jpg);
+      }
+
+}
+
+/* Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 4) 
+  and (orientation: landscape) {
+    body {
+        background-image: url(home_desktop.jpg);
+      }
+
+}
+
+
     /* for desktop */
     @media (min-width: 1025px) {
       body {
@@ -71,7 +282,7 @@
 
 
       if ((width >= 1280) && (height>=1024)) {
-        $("#main-img").attr("src","home_desktop.jpeg");      
+        $("#main-img").attr("src","home_desktop.jpg");      
       //do something
       }
       else if ((width >= 1024  ) && (height>=768)){
@@ -85,10 +296,6 @@
       //do something else
       }    
 
-    function clickBody() {
-        window.location.href = './maps.html'
-    }
-    document.body.addEventListener("click", clickBody)    
   </script>
 </body>
 </html>
