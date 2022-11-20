@@ -421,7 +421,7 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
           ctx.drawImage(img, 0, 0, mymap.width, mymap.height);
 
           for(var i = 0; i < mypath.length; i++) {
-              if ( s == mypath[i].start && d == mypath[i].end || ( s == mypath[i].end && d == mypath[i].start) ) {
+              if ( s == mypath[i].start && d == mypath[i].end ) {
                   data = mypath[i].path;
                   break;
                 }
