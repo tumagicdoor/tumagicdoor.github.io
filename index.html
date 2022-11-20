@@ -20,13 +20,14 @@
 
   <div class="container">
       <a href="maps.html">
-      <img id="main-img" src="home_desktop.jpg" alt="" />
+      <img id="main-img" src="" alt="LOGO" />
       </a>
   </div>
 
   <script src="jquery.min.js" > </script>
   <script>
     jQuery(document).ready(function($) {
+      function load_logo() {
       var height = $(window).height();
           var width = $(window).width();
           if (height > width) {
@@ -36,16 +37,11 @@
             $("#main-img").attr("src","home_desktop.jpg");
           }
 
-      $(window).resize(function () {
-          var height = $(window).height();
-          var width = $(window).width();
-          if (height > width) {
-            $("#main-img").attr("src","home_mobile.jpg");
-          }
-          if (height < width) {
-            $("#main-img").attr("src","home_desktop.jpg");
-          }
-      });    
+        }
+      $(window).resize( load_logo );
+      
+      //
+      load_logo();
     });
   </script>
 </body>
