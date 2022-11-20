@@ -19,6 +19,53 @@
         font-size: 3.5rem;
       }
     }
+
+
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #ff6699;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #ff6699;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+    }
+
+    .openbtn:hover {
+      background-color: #444;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {padding-top: 15px;}
+      .sidebar a {font-size: 18px;}
+    }    
   </style>
   
   <!-- Custom styles for this template -->
@@ -161,66 +208,67 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
     </symbol>
   
   </svg>
-  
-  <main>
+  <div id="mySidebar" class="sidebar">  
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white" style="width: 280px;background-color: #ff6699;">
         <span class="fs-4">TU Magic Door</span>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>        
       <hr>
-    <form>
-      <div class="form-group">
-        <label for="searchInput">ค้นหา</label>
-        <input type="input" class="form-control" id="searchInput" placeholder="พิมพ์คำค้นหา">
-      </div>
-      <div class="form-group">
-        <label for="startLocation">จุดเริ่มต้น</label>
-        <select class="form-select" id="startLocation">
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="endLocation">ปลายทาง</label>
-        <select class="form-select" id="endLocation">
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="pathtodest">แสดงเส้นทาง</label>
-        <textarea class="form-control" id="pathtodest" rows="10" readonly="True"></textarea>
-      </div>
-    </form>
-
-    <hr>
-    <div class="dropdown">
-      <a id="chatlink" href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#chat-quote-fill"/></svg>
-        <span class="fs-4">Chat with us</span>
-      </a>
-    </div>
-
-    <div class="card" id="msgWindow">
-      <div class="card-header"><span class="card-title" style="color: black;">Chat with TU Magic Door Users</span></div>
-      <div class="card-body" id="msgs">
-        <div class="msg to" style="color:black;">Hello! How can I assist you today?</div>
-      </div>
-      <div class="card-footer">
-        <div class="input-group" data-sender="me">
-          <input class="form-control" type="text" placeholder="Name" id="userName"/>
+      <form>
+        <div class="form-group">
+          <label for="searchInput">ค้นหา</label>
+          <input type="input" class="form-control" id="searchInput" placeholder="พิมพ์คำค้นหา">
         </div>
-        <div class="input-group" data-sender="me">
-          <input class="form-control" type="text" placeholder="Type message and hit [Enter] to send." id="newMsg"/>
-          <input type="hidden" id="sessionId" name="sessionId" value="">
+        <div class="form-group">
+          <label for="startLocation">จุดเริ่มต้น</label>
+          <select class="form-select" id="startLocation">
+          </select>
         </div>
-        <div class="input-group" data-sender="me">
-          <button class="btn btn-outline-secondary" type="button" id="sendBtn">Send</button>
-          <div class="input-group-append">
-            <button class="btn btn-outline-danger" type="button" id="closeBtn">Close</button>
+        <div class="form-group">
+          <label for="endLocation">ปลายทาง</label>
+          <select class="form-select" id="endLocation">
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pathtodest">แสดงเส้นทาง</label>
+          <textarea class="form-control" id="pathtodest" rows="10" readonly="True"></textarea>
+        </div>
+      </form>
+
+      <hr>
+      <div class="dropdown">
+        <a id="chatlink" href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#chat-quote-fill"/></svg>
+          <span class="fs-4">Chat with us</span>
+        </a>
+      </div>
+
+      <div class="card" id="msgWindow">
+        <div class="card-header"><span class="card-title" style="color: black;">Chat with TU Magic Door Users</span></div>
+        <div class="card-body" id="msgs">
+          <div class="msg to" style="color:black;">Hello! How can I assist you today?</div>
+        </div>
+        <div class="card-footer">
+          <div class="input-group" data-sender="me">
+            <input class="form-control" type="text" placeholder="Name" id="userName"/>
           </div>
+          <div class="input-group" data-sender="me">
+            <input class="form-control" type="text" placeholder="Type message and hit [Enter] to send." id="newMsg"/>
+            <input type="hidden" id="sessionId" name="sessionId" value="">
+          </div>
+          <div class="input-group" data-sender="me">
+            <button class="btn btn-outline-secondary" type="button" id="sendBtn">Send</button>
+            <div class="input-group-append">
+              <button class="btn btn-outline-danger" type="button" id="closeBtn">Close</button>
+            </div>
+          </div>
+
+
         </div>
-
-
       </div>
     </div>
-
   </div>
-    <div class="b-example-divider"></div>
+  <div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Open Menu</button>    
     <div class="d-flex flex-column flex-grow-1 p-3 bg-light">
       <div class="col-md-10 px-0">
         <canvas id="mymap" width=1522 height=1076 class="img-fluid">
@@ -228,8 +276,8 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
         <!-- <img src="./tumagicdoor-map.png" class="img-fluid"> -->
       </div>
     </div>
+  </div>
 
-  </main>      
   <script src="jquery.min.js" > </script>
 
   <script type="module">
@@ -340,6 +388,17 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
   <script type="text/javascript">
   //<![CDATA[
 
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "280px";
+    document.getElementById("main").style.marginLeft = "280px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+
+
   // $("#startLocation").selectpicker();
     jQuery(document).ready(function($) {
 
@@ -347,6 +406,7 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
         var rand = function() {
           return Math.random().toString(36).substr(2); // remove `0.`
         };
+
 
 
         function drawPath() {
