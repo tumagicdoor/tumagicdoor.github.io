@@ -8,7 +8,10 @@
   <style>
 
     img {display:block;margin:0 auto;width:100%}
-
+    @media (orientation: landscape) {
+    }
+    @media (orientation: portrait) {
+    }
 
   </style>
   
@@ -21,5 +24,29 @@
       </a>
   </div>
 
+  <script src="jquery.min.js" > </script>
+  <script>
+    jQuery(document).ready(function($) {
+      var height = $(window).height();
+          var width = $(window).width();
+          if (height > width) {
+            $("#main-img").attr("src","home_mobile.jpg");
+          }
+          if (height < width) {
+            $("#main-img").attr("src","home_desktop.jpg");
+          }
+
+      $(window).resize(function () {
+          var height = $(window).height();
+          var width = $(window).width();
+          if (height > width) {
+            $("#main-img").attr("src","home_mobile.jpg");
+          }
+          if (height < width) {
+            $("#main-img").attr("src","home_desktop.jpg");
+          }
+      });    
+    });
+  </script>
 </body>
 </html>
