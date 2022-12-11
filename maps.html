@@ -462,7 +462,7 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
             var showimg = false;
             var firstItem = true;
             var itemcnt = 0;
-            if (value.length > 0) {
+            if (value.length >= 3) {
               for(i=0; i< Object.keys(tuimage).length; i++) {
                   if(tuimage[i] !== undefined && tuimage[i].tag.length > 0) {
                     let result = tuimage[i].tag.indexOf(value);
