@@ -88,7 +88,27 @@ let adjList;
 var resultpathList = {};
 var pathcnt = 0;
 
-// var location = new Array(100);
+var tuimage = new Array(17);
+
+tuimage[0] = { name:"b1_01.jpg", thumbnail:"b1_01s.jpg", tag:"ตึก, ตึก1"};
+tuimage[1] = { name:"pr_01.jpg", thumbnail:"pr_01s.jpg", tag:"pr, PR, Pr, ประชาสัมพันธ์"};
+tuimage[2] = { name:"b3_01.jpg", thumbnail:"b3_01s.jpg", tag:"ตึก, ตึก3"};
+tuimage[3] = { name:"b2_01.jpg", thumbnail:"b2_01s.jpg", tag:"ตึก, ตึก2"};
+tuimage[4] = { name:"hf_01.jpg", thumbnail:"hf_01s.jpg", tag:"hall, ห้องเกียรติยศ"};
+tuimage[5] = { name:"b80_01.jpg", thumbnail:"b80_01s.jpg", tag:"ตึก, ตึก80"};
+tuimage[6] = { name:"ba_01.jpg", thumbnail:"ba_01s.jpg", tag:"ตึก, ตึกศิลปะ"};
+tuimage[7] = { name:"dr_01.jpg", thumbnail:"dr_01s.jpg", tag:"ประตู, หน้ารร, ประตูพญาไท"};
+tuimage[8] = { name:"ya_01.jpg", thumbnail:"ya_01s.jpg", tag:"ลาน, atm, ATM"};
+tuimage[9] = { name:"yv_01.jpg", thumbnail:"yv_01s.jpg", tag:"ลาน, วอลเลย์บอล, บอล"};
+tuimage[10] = { name:"hf_02.jpg", thumbnail:"hf_02s.jpg", tag:"hall, หอประชุม, หอประชุมใหญ่"};
+tuimage[11] = { name:"ct_01.jpg", thumbnail:"ct_01s.jpg", tag:"canteen, โรงอาหาร, ตึก80"};
+tuimage[12] = { name:"s_rama5.jpg", thumbnail:"s_rama5s.jpg", tag:"ร.5, ศาลร.5"};
+tuimage[13] = { name:"hf_03.jpg", thumbnail:"hf_03s.jpg", tag:"ศาลา, ศาลาดนตรีไทย, ดนตรี"};
+tuimage[14] = { name:"hf_04.jpg", thumbnail:"hf_04s.jpg", tag:"ศาลา, ศาลาพระเกี้ยวแก้ว, พระเกี้ยว"};
+tuimage[15] = { name:"tl_01.jpg", thumbnail:"tl_01s.jpg", tag:"ห้องน้ำ, ห้องน้ำตึกศิลปะ, ตึกศิลปะ"};
+tuimage[16] = { name:"tl_02.jpg", thumbnail:"tl_02s.jpg", tag:"ห้องน้ำ, ห้องน้ำโรงใหญ่, โรงใหญ่"};
+
+// var location = new Array(84);
 
 location[0] = { name:"ทางเลี้ยงเข้าสนตอ", tag:"", x:1191, y:92};
 location[1] = { name:"ห้องพยาบาลพุทธรักษา", tag:"ห้องพยาบาล", x:1271, y:92};
@@ -278,6 +298,36 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
     </div>
   </div>
 
+
+  <div id="imageGallery" data-toggle="modal" data-target="#galleryModal">
+    <div class="container" >
+      <div class="carousel-viewport">
+        <ul class="items" id="itemList">
+          <li class="item">    
+            <img class="image" src="images/b1_01.jpg">
+          </li>
+          <li class="item">      
+            <img class="image" src="images/b2_01.jpg">
+          </li>
+        </ul>
+      </div>
+      <button class="carousel-control prev" title="Go to previous item">
+        <svg viewBox="0 0 256 512">
+          <path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z" />
+        </svg>
+      </button>
+      <button class="carousel-control next" title="Go to next item">
+        <svg viewBox="0 0 256 512">
+          <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" />
+        </svg>
+      </button>
+      <ol class="carousel-dots" id="dotList">
+        <li class="dot active">1</li>
+        <li class="dot">2</li>
+      </ol>            
+    </div>
+  </div>
+
   <script src="jquery.min.js" > </script>
 
   <script type="module">
@@ -407,6 +457,81 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
           return Math.random().toString(36).substr(2); // remove `0.`
         };
 
+        $('#searchInput').keyup(function(){
+            var value = $(this).val().trim();
+            var showimg = false;
+            var firstItem = true;
+            var itemcnt = 0;
+            if (value.length > 0) {
+              for(i=0; i< Object.keys(tuimage).length; i++) {
+                  if(tuimage[i] !== undefined && tuimage[i].tag.length > 0) {
+                    let result = tuimage[i].tag.indexOf(value);
+                    if (result > -1) {
+                      console.log(tuimage[i]);
+                      itemcnt++;
+                      if (firstItem) {
+                        showimg = true;
+                        firstItem = false;
+                        $("#dotList").empty().append('<li class="dot active">1</li>');
+                        $("#itemList").empty().append('<li class="item"><img class="image" src="images/'+ tuimage[i].name+'"></li>');
+                      } else {
+                        $("#dotList").append('<li class="dot">'+itemcnt.toString()+'</li>');
+                        $("#itemList").append('<li class="item"><img class="image" src="images/'+ tuimage[i].name+'"></li>');
+                      }
+
+                    }
+                  }
+              }
+            }
+            if (showimg) {
+              document.getElementById("imageGallery").style.display = "block";
+
+              /* for image gallery */
+              /* Carousel */
+              const items = document.querySelector(".items");
+              const dots = document.querySelectorAll(".dot");
+              const prev = document.querySelector(".prev");
+              const next = document.querySelector(".next");
+              const total = items.children.length - 1;
+              const active = "active";
+              let current = 0;
+
+              const setActiveDot = () => {
+                dots.forEach((button, i) => {
+                  i === current
+                    ? button.classList.add(active)
+                    : button.classList.remove(active);
+                });
+              };
+
+              const scrollToCurrent = () => {
+                items.style.transform = `translateX(${current * -100}%`;
+                setActiveDot();
+              };
+
+              const scrollPrev = () => {
+                if (current === 0) return;
+                current--;
+                scrollToCurrent();
+              };
+
+              const scrollNext = () => {
+                if (current === total) return;
+                current++;
+                scrollToCurrent();
+              };
+
+              prev.addEventListener("click", scrollPrev);
+              next.addEventListener("click", scrollNext);        
+              scrollToCurrent();
+
+
+            } else {
+              document.getElementById("imageGallery").style.display = "none";
+            }
+
+
+        });
 
 
         function drawPath() {
@@ -525,7 +650,7 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
 
 
         $("#chatlink").click(function(){ 
-          document.getElementById("msgWindow").style.display = "block";
+          document.getElementById("msgWindow").style.display = "grid";
           return false; 
         });
         $("#closeBtn").click(function(){ 
@@ -536,6 +661,7 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
         $("#sessionId").val(rand() + rand());
 
         locationLoad();
+
 
 
     });
