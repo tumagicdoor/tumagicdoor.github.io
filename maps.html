@@ -339,15 +339,20 @@ location[83] = { name:"ห้องพยาบาลตึก 1", tag:"ห้�
 
     // Your web app's Firebase configuration
     const config = {
-    apiKey: "AIzaSyB5kahdypenizn8eRSDmVEMacgnUWMbQKs",
-    authDomain: "simplechat-210d5.firebaseapp.com",
-    databaseURL: "https://simplechat-210d5-default-rtdb.firebaseio.com",
-    projectId: "simplechat-210d5",
-    storageBucket: "simplechat-210d5.appspot.com",
-    messagingSenderId: "1086056126841",
-    appId: "1:1086056126841:web:9eb267fa13c9eaa8b5b7a8"
+      apiKey: "AIzaSyBs_va3fzOu0CY89vldribf2TCZZJ5qtEg",
+      authDomain: "tumagicdoor.firebaseapp.com",
+      databaseURL: "https://tumagicdoor-default-rtdb.firebaseio.com",
+      projectId: "tumagicdoor",
+      storageBucket: "tumagicdoor.appspot.com",
+      messagingSenderId: "776850631036",
+      appId: "1:776850631036:web:b8835469c90cf0dc78dcf9"
     };
 
+   
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+    
     // Initialize Firebase
     const app = initializeApp(config);
     import { getDatabase, ref, set, push, onChildAdded, onValue } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js"
