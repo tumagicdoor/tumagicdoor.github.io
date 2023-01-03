@@ -179,6 +179,7 @@ g.addEdge(67, 68)
 g.addEdge(68, 69)
 g.addEdge(69, 70)
 g.addEdge(70, 71)
+g.addEdge(71, 72)
 
 locationmax = 100
 location = [None] * locationmax
