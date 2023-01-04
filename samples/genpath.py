@@ -1,6 +1,7 @@
 # Python program to print all paths from a source to destination.
 
 import json
+import sys
 from collections import defaultdict
 
 # This class represents a directed graph
@@ -283,14 +284,30 @@ pathid = []
 points = []
 
 
+startidx = 0
+endidx = 99
+filenumber = 0
+itemcnt = 0
+for x in sys.argv:
+    filenumber = (int(x) if itemcnt == 1 else filenumber)
+    startidx = (int(x) if itemcnt == 2 else startidx)
+    endidx = (int(x) if itemcnt == 3 else endidx)
+    itemcnt += 1
+
+
+# if filenumber == 0:
+# 	outputfile = './datax.json'
+# else:
+outputfile = "./data{}.json".format(filenumber if filenumber> 0 else "")
+print (outputfile)
 
 for i, val in enumerate(location):
-	if val is not None and len(val["tag"]) > 0:
+	if val is not None and len(val["tag"]) > 0 and i >= startidx and i <= endidx:
 		pathid.append(i)
 		# print(i, val["name"])
 
 datacnt = 0
-with open('./data.json', 'w') as f:
+with open(outputfile, 'w') as f:
 	f.write("[")
 	for startIdx in pathid:
 		for endIdx in pathid:
