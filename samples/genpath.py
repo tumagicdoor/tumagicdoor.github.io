@@ -302,7 +302,7 @@ outputfile = "./data{}.json".format(filenumber if filenumber> 0 else "")
 print (outputfile)
 
 for i, val in enumerate(location):
-	if val is not None and len(val["tag"]) > 0 and i >= startidx and i <= endidx:
+	if val is not None and len(val["tag"]) > 0 :
 		pathid.append(i)
 		# print(i, val["name"])
 
@@ -310,24 +310,25 @@ datacnt = 0
 with open(outputfile, 'w') as f:
 	f.write("[")
 	for startIdx in pathid:
-		for endIdx in pathid:
-			if startIdx != endIdx:
-				found = False
-				for point in points:
-					if point[0] == startIdx and point[1] == endIdx:
-						found = True
-						break
+		if startIdx >= startidx and startIdx <= endidx:
+			for endIdx in pathid:
+				if startIdx != endIdx:
+					found = False
+					for point in points:
+						if point[0] == startIdx and point[1] == endIdx:
+							found = True
+							break
 
-				if not found:
-					g.routelen = 0
-					g.beginpath = startIdx
-					g.printAllPaths(startIdx, endIdx)
-					if g.routelen > 0:
-						print(g.route)
-						f.write(',\n' if datacnt > 0 else '\n' )
-						json.dump(g.route,f)
-						datacnt = datacnt + 1
-						points.append([startIdx, endIdx])
+					if not found:
+						g.routelen = 0
+						g.beginpath = startIdx
+						g.printAllPaths(startIdx, endIdx)
+						if g.routelen > 0:
+							print(g.route)
+							f.write(',\n' if datacnt > 0 else '\n' )
+							json.dump(g.route,f)
+							datacnt = datacnt + 1
+							points.append([startIdx, endIdx])
 
 		# 		if datacnt > 100:
 		# 			break
