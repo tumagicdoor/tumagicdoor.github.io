@@ -79,9 +79,9 @@ class Graph:
 # Create a graph given in the above diagram
 g = Graph(100)
 
-g.addEdge(3, 2)
-g.addEdge(2, 1)
-g.addEdge(1, 0)
+g.addEdge(3, 2, 0.11)
+g.addEdge(2, 1, 0.015)
+g.addEdge(1, 0, 0.015)
 g.addEdge(0, 10)
 g.addEdge(10, 9)
 g.addEdge(10, 12)
