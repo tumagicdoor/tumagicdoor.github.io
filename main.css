@@ -298,8 +298,3 @@ main {
 #msgForm input:focus, #msgForm button:focus {
   box-shadow: none;
 }
-.footer{
-  text-color: red;
-  text-align: right;
-  padding: 10px;
-}
