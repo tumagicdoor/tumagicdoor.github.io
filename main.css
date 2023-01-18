@@ -110,7 +110,7 @@ main {
 
 .container > * {
   grid-area: container;
-  max-width: 500px;
+  max-width: 1000px;
 }
 
 .title {
