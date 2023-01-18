@@ -101,10 +101,10 @@ main {
 .container {
   display: grid;
   grid-template: "container" 1fr;
-  place-items: center cover;
-  place-content: center cover;
+  place-items: center;
+  place-content: center;
   overflow: hidden;
-  max-height: clamp(200px, 50vh, 400px;
+  max-height: clamp(450px, 50vh, 600px;
   z-index: 9;
 }
 
@@ -114,7 +114,7 @@ main {
 }
 
 .title {
-  place-self: start center cover;
+  place-self: start center;
 }
 
 .carousel-control.prev {
