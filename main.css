@@ -133,6 +133,8 @@ main {
 
 * {
   box-sizing: border-box;
+  max-width: 500px;
+  text-align: center;
 }
 
 
