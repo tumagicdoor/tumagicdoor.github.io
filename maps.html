@@ -394,7 +394,6 @@ location[83] = { "name":"ห้องพยาบาลตึก 1", "tag":"ห�
           } else {
             $("#pathtodest").append("Direction not assigned.\n");
           }
-          closeImg();
 
         }
 
@@ -457,11 +456,13 @@ location[83] = { "name":"ห้องพยาบาลตึก 1", "tag":"ห�
         }
 
         $("#startLocation").change(function() {
+            closeImg();
             drawPath();
         });
 
 
         $("#endLocation").change(function() {
+            closeImg();
             drawPath();
         });
 
